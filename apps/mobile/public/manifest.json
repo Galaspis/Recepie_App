@@ -1,0 +1,46 @@
+{
+  "name": "קורט",
+  "short_name": "קורט",
+  "lang": "he",
+  "dir": "rtl",
+  "start_url": "https://kort.gallab.top/",
+  "display": "standalone",
+  "background_color": "#F9F2E6",
+  "theme_color": "#C7522F",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ],
+  "share_target": {
+    "action": "https://kort.gallab.top/import",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "scope": "https://kort.gallab.top/",
+  "id": "https://kort.gallab.top/",
+  "description": "מתכונים טובים לאנשים שאוהבים לבשל. שומרים רילסים ופוסטים כמתכונים מסודרים עם רשימת קניות."
+}

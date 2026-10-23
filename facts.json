@@ -1,0 +1,18 @@
+{
+ "_about": "Facts the drift monitor checks this repo's docs against. 'banned' = old names that must not appear in README/CLAUDE.md/STATUS.md/docs; 'allow' = files exempt; 'ignore' = checks that are intentional here.",
+ "repo": "kort",
+ "database": "Postgres (kort-db container)",
+ "hosting": "OVH VPS (Docker + Caddy)",
+ "domain": "kort.gallab.top",
+ "url": "https://kort.gallab.top",
+ "services": [
+  "Postgres",
+  "Claude API",
+  "yt-dlp",
+  "ffmpeg"
+ ],
+ "banned": [
+  "Supabase"
+ ],
+ "allow": []
+}

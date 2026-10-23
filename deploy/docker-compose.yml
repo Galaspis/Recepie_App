@@ -1,0 +1,41 @@
+# Installed as /srv/kort/compose.yml on the gallab server (the deploy Action copies it there).
+# Layout on the server:
+#   /srv/kort/src      the repo (rsync'd by the Action)      /srv/kort/kort.env   app secrets (never in git)
+#   /srv/kort/pg       Postgres data                         /srv/kort/pg.env     POSTGRES_PASSWORD
+#   /srv/kort/media    images + videos                       /srv/kort/cookies.txt optional yt-dlp cookies
+services:
+  kort-db:
+    image: postgres:17-alpine
+    container_name: kort-db
+    restart: unless-stopped
+    env_file: pg.env
+    environment:
+      POSTGRES_USER: kort
+      POSTGRES_DB: kort
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - ./pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kort -d kort"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  kort:
+    build:
+      context: ./src
+      dockerfile: apps/server/Dockerfile
+    container_name: kort
+    restart: unless-stopped
+    env_file: kort.env
+    environment:
+      COOKIES_FILE: /secrets/cookies.txt
+    depends_on:
+      kort-db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8787:8787"
+    volumes:
+      - ./media:/media
+      - ./cookies.txt:/secrets/cookies.txt:ro
